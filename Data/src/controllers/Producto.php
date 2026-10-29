@@ -18,7 +18,7 @@ class Producto {
 
     public function read(Request $request, Response $response, array $args): Response {
         $this->container->get('eloquent');
-        if(isset($args['id'])){
+        if(isset($args['productos.id'])){
             $producto = ProductoModel::query()
                 ->select(['id', 'sku', 'nombre_producto', 'descripcion', 'precio_unitario', 'stock_actual', 'categoria', 'updated_at'])
                 ->find($args['id']);
