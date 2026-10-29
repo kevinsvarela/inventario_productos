@@ -6,13 +6,41 @@ POST {{uri}}
 Content-Type: application/json
 
 {
+    "sku": "COM-0002",
+    "nombre_producto": "Atún Suli",
+    "descripcion": "Atún",
+    "precio_unitario": 500.00,
+    "stock_actual": 32,
+    "categoria": "Comida"
+}
+### Insertar con datos inválidos 
+POST {{uri}}
+Content-Type: application/json
+
+{
+    "sku": "her 01",
+    "nombre_producto": "",
+    "precio_unitario": -10,
+    "stock_actual": 2.5,
+    "categoria": ""
+}
+
+### Insertar con SKU ya usado
+POST {{uri}}
+Content-Type: application/json
+
+{
     "sku": "HER-0001",
-    "nombre_producto": "Destornillador plano",
-    "descripcion": "Destornillador de 7 pulgadas",
-    "precio_unitario": 4500.50,
-    "stock_actual": 25,
+    "nombre_producto": "Otro destornillador",
+    "precio_unitario": 3000,
+    "stock_actual": 5,
     "categoria": "Herramientas"
 }
+
+### Producto que no existe 
+   GET {{uri}}/5000
+
+###
 
 
 ### Listar todos los productos 
@@ -32,12 +60,12 @@ Content-Type: application/json
 }
 
 ### Actualizar nombre y descripción
-PUT {{uri}}/1
+PUT {{uri}}/8
 Content-Type: application/json
 
 {
-    "nombre_producto": "Destornillador Phillips",
-    "descripcion": "Destornillador de 5 pulgadas"
+    "nombre_producto": "Arroz Tio Pelón",
+    "descripcion": "Arroz de 5kg"
 }
 
 ### Eliminar producto

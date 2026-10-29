@@ -53,7 +53,7 @@ class Producto {
             $dataservice = $this->container->get(DataService::class);
             $upstream = $dataservice->post('productos', json_encode($data, JSON_THROW_ON_ERROR));
 
-            return $this->json($response, json_decode((string) $upstream->getBody(), true) ?? [], $upstream->getStatusCode());
+            return $this->json($response, json_decode((string) $upstream->getBody(), true), $upstream->getStatusCode());
         }catch (ConnectException){
             return $this->json($response, ['error' => 'El servicio de datos no está disponible'], 502);
         }
