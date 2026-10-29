@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS db_inventario;
-USE db_inventario;
-
 CREATE TABLE productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sku VARCHAR(50) UNIQUE NOT NULL,
