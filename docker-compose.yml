@@ -1,0 +1,42 @@
+services:
+  ksvdb:
+    image: mysql:9.7
+    container_name: ksv_bd
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_DATABASE: ksv_bd 
+    ports:
+      - 3307:3306
+    volumes:
+      - ./db_dump:/docker-entrypoint-initdb.d
+      - ./mysql:/var/lib/mysql
+    secrets:
+      - db_password
+  ksvdatos:
+    container_name: ksv_datos
+    volumes:
+      - ./Data/public:/var/www/html/public
+      - ./Data/src:/var/www/html/src
+    build:
+      context: .
+      dockerfile: ./Data/Dockerfile
+    secrets:
+      - db_password
+    depends_on:
+      - ksvdb
+
+  ksvnegocio:
+    container_name: ksv_negocio
+    volumes:
+      - ./Business/public:/var/www/html/public
+      - ./Business/src:/var/www/html/src
+    build:
+      context: .
+      dockerfile: ./Business/Dockerfile
+    ports:
+      - 9090:80
+    depends_on:
+      - ksvdatos
+secrets:
+  db_password:
+    file: ./db_password.txt      
