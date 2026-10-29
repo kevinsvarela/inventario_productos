@@ -1,0 +1,46 @@
+@host = http://localhost:9090/api
+@uri = {{host}}/productos
+
+### INSERTAR
+POST {{uri}}
+Content-Type: application/json
+
+{
+    "sku": "HER-0001",
+    "nombre_producto": "Destornillador plano",
+    "descripcion": "Destornillador de 7 pulgadas",
+    "precio_unitario": 4500.50,
+    "stock_actual": 25,
+    "categoria": "Herramientas"
+}
+
+
+### Listar todos los productos 
+GET {{uri}}
+
+### Obtener producto por id
+GET {{uri}}/1
+
+
+### Actualizar precio y stock 
+PUT {{uri}}/1
+Content-Type: application/json
+
+{
+    "precio_unitario": 4800,
+    "stock_actual": 28
+}
+
+### Actualizar nombre y descripción
+PUT {{uri}}/1
+Content-Type: application/json
+
+{
+    "nombre_producto": "Destornillador Phillips",
+    "descripcion": "Destornillador de 5 pulgadas"
+}
+
+### Eliminar producto
+DELETE {{uri}}/3
+
+###
