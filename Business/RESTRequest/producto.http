@@ -60,7 +60,7 @@ Content-Type: application/json
 }
 
 ### Actualizar nombre y descripción
-PUT {{uri}}/8
+PUT {{uri}}/1
 Content-Type: application/json
 
 {
@@ -69,6 +69,6 @@ Content-Type: application/json
 }
 
 ### Eliminar producto
-DELETE {{uri}}/3
+DELETE {{uri}}/1
 
 ###
